@@ -1,4 +1,3 @@
--- Klant table
 CREATE TABLE Klant (
     klantNr INTEGER(10) NOT NULL,
     Achternaam VARCHAR(40),
@@ -6,15 +5,15 @@ CREATE TABLE Klant (
     PRIMARY KEY (klantNr)
 );
 
--- Assistent table
 CREATE TABLE Assistent (
     AssistentID INTEGER(10) NOT NULL,
     Achternaam VARCHAR(40),
     Voornaam VARCHAR(40),
+    Username VARCHAR(40),
+    Password VARCHAR(40),
     PRIMARY KEY (AssistentID)
 );
 
--- Factuur table
 CREATE TABLE Factuur (
     FactuurNr INTEGER(10) NOT NULL,
     KlantNr INTEGER(10),
@@ -25,43 +24,57 @@ CREATE TABLE Factuur (
     FOREIGN KEY (AssistentID) REFERENCES Assistent(AssistentID)
 );
 
--- Locatie table
 CREATE TABLE Locatie (
     LocatieID INTEGER(10) NOT NULL,
     Naam VARCHAR(20),
     PRIMARY KEY (LocatieID)
 );
 
--- AfspraakType table
 CREATE TABLE AfspraakType (
     AfspraakCode CHAR(3) NOT NULL,
     Naam VARCHAR(20),
     PRIMARY KEY (AfspraakCode)
 );
 
--- Afspraak table
+CREATE TABLE MedewerkersRole (
+    RoleID INTEGER(10) NOT NULL,
+    RoleName VARCHAR(40),
+    PRIMARY KEY (RoleID)
+);
+
+CREATE TABLE Medewerkers (
+    MedewerkersID INTEGER(10) NOT NULL,
+    Achternaam VARCHAR(40),
+    Voornaam VARCHAR(40),
+    UserNAME VARCHAR(40),
+    Password VARCHAR(40),
+    MedewerkersRole INTEGER(10),
+    PRIMARY KEY (MedewerkersID),
+    FOREIGN KEY (MedewerkersRole) REFERENCES MedewerkersRole(RoleID)
+);
+
 CREATE TABLE Afspraak (
-    AfspraakID INTEGER(10) NOT NULL AUTO_INCREMENT,
+    AfspraakID INTEGER(10) NOT NULL,
     FactuurID INTEGER(10),
     LocatieID INTEGER(10),
     Starttijd INTEGER(10),
     Eindtijd INTEGER(10),
+    MedewerkersID IntEGER(10),
     Type CHAR(3),
     PRIMARY KEY (AfspraakID),
     FOREIGN KEY (FactuurID) REFERENCES Factuur(FactuurNr),
     FOREIGN KEY (LocatieID) REFERENCES Locatie(LocatieID),
-    FOREIGN KEY (Type) REFERENCES AfspraakType(AfspraakCode)
+    FOREIGN KEY (Type) REFERENCES AfspraakType(AfspraakCode),
+    FOREIGN KEY (MedewerkersID) REFERENCES Medewerkers(MedewerkersID)
 );
 
--- Behandeling table
 CREATE TABLE Behandeling (
     BehandelingCode CHAR(3) NOT NULL,
-    Naam VARCHAR(40),
+    Naam VARCHAR(40), 
     Kosten DECIMAL(10, 2),
     PRIMARY KEY (BehandelingCode)
 );
 
--- Bezoek Behandeling
 CREATE TABLE Bezoek_Behandeling (
     BezoekID INTEGER(10) NOT NULL,
     BehandelingCode CHAR(3) NOT NULL,
