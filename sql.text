@@ -9,6 +9,8 @@ CREATE TABLE Assistent (
     AssistentID INTEGER(10) NOT NULL,
     Achternaam VARCHAR(40),
     Voornaam VARCHAR(40),
+    Username VARCHAR(40),
+    Password VARCHAR(40),
     PRIMARY KEY (AssistentID)
 );
 
@@ -34,22 +36,41 @@ CREATE TABLE AfspraakType (
     PRIMARY KEY (AfspraakCode)
 );
 
+CREATE TABLE MedewerkersRole (
+    RoleID INTEGER(10) NOT NULL,
+    RoleName VARCHAR(40),
+    PRIMARY KEY (RoleID)
+);
+
+CREATE TABLE Medewerkers (
+    MedewerkersID INTEGER(10) NOT NULL,
+    Achternaam VARCHAR(40),
+    Voornaam VARCHAR(40),
+    UserNAME VARCHAR(40),
+    Password VARCHAR(40),
+    MedewerkersRole INTEGER(10),
+    PRIMARY KEY (MedewerkersID),
+    FOREIGN KEY (MedewerkersRole) REFERENCES MedewerkersRole(RoleID)
+);
+
 CREATE TABLE Afspraak (
     AfspraakID INTEGER(10) NOT NULL,
     FactuurID INTEGER(10),
     LocatieID INTEGER(10),
     Starttijd INTEGER(10),
     Eindtijd INTEGER(10),
+    MedewerkersID IntEGER(10),
     Type CHAR(3),
     PRIMARY KEY (AfspraakID),
     FOREIGN KEY (FactuurID) REFERENCES Factuur(FactuurNr),
     FOREIGN KEY (LocatieID) REFERENCES Locatie(LocatieID),
-    FOREIGN KEY (Type) REFERENCES AfspraakType(AfspraakCode)
+    FOREIGN KEY (Type) REFERENCES AfspraakType(AfspraakCode),
+    FOREIGN KEY (MedewerkersID) REFERENCES Medewerkers(MedewerkersID)
 );
 
 CREATE TABLE Behandeling (
     BehandelingCode CHAR(3) NOT NULL,
-    Naam VARCHAR(40), -- Adjust varchar length as needed, it was cut off in the image
+    Naam VARCHAR(40), 
     Kosten DECIMAL(10, 2),
     PRIMARY KEY (BehandelingCode)
 );
