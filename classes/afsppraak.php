@@ -3,9 +3,32 @@ require_once "classes/config.php";
 
 class Afspraak extends DBconfig {
 
-    public $id;
-    public $attribute;
-    public $datum;
+    public $gebruiker;
+    public $patient;
     public $locatie;
-    public $type;
+    public $status;
+    public $datum;
+    public $tijd;
+
+    // Afspraak
+    public function afspraakMaken() {
+
+    }
+
+    public function afspraakWijzigen() {
+
+    }
+
+    public function afspraakAnnuleren() {
+
+    }
+
+    // behandeling
+    public function behandelingToevoegen() {
+
+    }
+
+    public function behandelingVerwijderen() {
+
+    }
 }

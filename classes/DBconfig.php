@@ -6,7 +6,7 @@ class DBconfig {
 
     public function connect() {
         try {
-            $conn = new PDO('mysql:localhost=db;dbname=alakerkelanden', 'root', '');
+            $conn = new PDO('mysql:localhost=db;dbname=kerkelanden', 'root', '');
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
             $this->conn = $conn;
