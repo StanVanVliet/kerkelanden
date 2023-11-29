@@ -1,3 +1,8 @@
+DROP DATABASE IF EXISTS kerkelanden;
+CREATE DATABASE kerkelanden;
+
+USE kerkelanden;
+
 CREATE TABLE Locatie (
     locatie_id INT PRIMARY KEY,
     Adres VARCHAR(255),
@@ -46,7 +51,7 @@ CREATE TABLE Afspraak (
     Datum DATE,
     Tijd TIME,
     Factuur_id INT,
-    FOREIGN KEY (User) REFERENCES User(User),
+    FOREIGN KEY (User_id) REFERENCES User(User_id),
     FOREIGN KEY (Patient_id) REFERENCES Patient(patient_id),
     FOREIGN KEY (Locatie_id) REFERENCES Locatie(locatie_id),
     FOREIGN KEY (Factuur_id) REFERENCES Factuur(factuur_nr)
