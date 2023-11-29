@@ -14,15 +14,15 @@ CREATE TABLE Patient (
     wachtwoord VARCHAR(255)
 );
 
-CREATE TABLE Gebruiker (
-    gebruiker_id INT PRIMARY KEY,
+CREATE TABLE User (
+    User_id INT PRIMARY KEY,
     Adres VARCHAR(255),
-    Wachtwoord VARCHAR(255),
+    Password VARCHAR(255),
     Naam VARCHAR(255),
     Geboortedatum DATE,
     Tel_nr INT,
     Rol VARCHAR(255),
-    user_name VARCHAR(255)
+    Username VARCHAR(255)
 );
 
 CREATE TABLE Behandeling (
@@ -38,15 +38,15 @@ CREATE TABLE Factuur (
 );
 
 CREATE TABLE Afspraak (
-    afspraak_id INT PRIMARY KEY,
-    Gebruiker_id INT,
+    Afspraak_id INT PRIMARY KEY,
+    User_id INT,
     Patient_id INT,
     Locatie_id INT,
     status VARCHAR(255),
     Datum DATE,
     Tijd TIME,
     Factuur_id INT,
-    FOREIGN KEY (Gebruiker_id) REFERENCES Gebruiker(gebruiker_id),
+    FOREIGN KEY (User) REFERENCES User(User),
     FOREIGN KEY (Patient_id) REFERENCES Patient(patient_id),
     FOREIGN KEY (Locatie_id) REFERENCES Locatie(locatie_id),
     FOREIGN KEY (Factuur_id) REFERENCES Factuur(factuur_nr)
