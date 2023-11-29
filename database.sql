@@ -1,85 +1,61 @@
-CREATE TABLE Klant (
-    klantNr INTEGER(10) NOT NULL,
-    Achternaam VARCHAR(40),
-    Voornaam VARCHAR(40),
-    PRIMARY KEY (klantNr)
-);
-
-CREATE TABLE Assistent (
-    AssistentID INTEGER(10) NOT NULL,
-    Achternaam VARCHAR(40),
-    Voornaam VARCHAR(40),
-    Username VARCHAR(40),
-    Password VARCHAR(40),
-    PRIMARY KEY (AssistentID)
-);
-
-CREATE TABLE Factuur (
-    FactuurNr INTEGER(10) NOT NULL,
-    KlantNr INTEGER(10),
-    Datum DATE,
-    AssistentID INTEGER(10),
-    PRIMARY KEY (FactuurNr),
-    FOREIGN KEY (KlantNr) REFERENCES Klant(klantNr),
-    FOREIGN KEY (AssistentID) REFERENCES Assistent(AssistentID)
-);
-
 CREATE TABLE Locatie (
-    LocatieID INTEGER(10) NOT NULL,
-    Naam VARCHAR(20),
-    PRIMARY KEY (LocatieID)
+    locatie_id INT PRIMARY KEY,
+    Adres VARCHAR(255),
+    Tel_nr INT
 );
 
-CREATE TABLE AfspraakType (
-    AfspraakCode CHAR(3) NOT NULL,
-    Naam VARCHAR(20),
-    PRIMARY KEY (AfspraakCode)
+CREATE TABLE Patient (
+    patient_id INT PRIMARY KEY,
+    Naam VARCHAR(255),
+    Geboortedatum DATE,
+    Adres VARCHAR(255),
+    Tel_nr INT,
+    user_name VARCHAR(255),
+    wachtwoord VARCHAR(255)
 );
 
-CREATE TABLE MedewerkersRole (
-    RoleID INTEGER(10) NOT NULL,
-    RoleName VARCHAR(40),
-    PRIMARY KEY (RoleID)
-);
-
-CREATE TABLE Medewerkers (
-    MedewerkersID INTEGER(10) NOT NULL,
-    Achternaam VARCHAR(40),
-    Voornaam VARCHAR(40),
-    UserNAME VARCHAR(40),
-    Password VARCHAR(40),
-    MedewerkersRole INTEGER(10),
-    PRIMARY KEY (MedewerkersID),
-    FOREIGN KEY (MedewerkersRole) REFERENCES MedewerkersRole(RoleID)
-);
-
-CREATE TABLE Afspraak (
-    AfspraakID INTEGER(10) NOT NULL,
-    FactuurID INTEGER(10),
-    LocatieID INTEGER(10),
-    Starttijd INTEGER(10),
-    Eindtijd INTEGER(10),
-    MedewerkersID IntEGER(10),
-    Type CHAR(3),
-    PRIMARY KEY (AfspraakID),
-    FOREIGN KEY (FactuurID) REFERENCES Factuur(FactuurNr),
-    FOREIGN KEY (LocatieID) REFERENCES Locatie(LocatieID),
-    FOREIGN KEY (Type) REFERENCES AfspraakType(AfspraakCode),
-    FOREIGN KEY (MedewerkersID) REFERENCES Medewerkers(MedewerkersID)
+CREATE TABLE Gebruiker (
+    gebruiker_id INT PRIMARY KEY,
+    Adres VARCHAR(255),
+    Wachtwoord VARCHAR(255),
+    Naam VARCHAR(255),
+    Geboortedatum DATE,
+    Tel_nr INT,
+    Rol VARCHAR(255),
+    user_name VARCHAR(255)
 );
 
 CREATE TABLE Behandeling (
-    BehandelingCode CHAR(3) NOT NULL,
-    Naam VARCHAR(40), 
-    Kosten DECIMAL(10, 2),
-    PRIMARY KEY (BehandelingCode)
+    behandeling_id INT PRIMARY KEY,
+    behandeling_beschrijving VARCHAR(255),
+    kosten DOUBLE
 );
 
-CREATE TABLE Bezoek_Behandeling (
-    BezoekID INTEGER(10) NOT NULL,
-    BehandelingCode CHAR(3) NOT NULL,
-    Vergoeding DECIMAL(10, 2),
-    PRIMARY KEY (BezoekID, BehandelingCode),
-    FOREIGN KEY (BezoekID) REFERENCES Afspraak(AfspraakID),
-    FOREIGN KEY (BehandelingCode) REFERENCES Behandeling(BehandelingCode)
+CREATE TABLE Factuur (
+    factuur_nr INT PRIMARY KEY,
+    Bedrag DOUBLE,
+    Status VARCHAR(255)
+);
+
+CREATE TABLE Afspraak (
+    afspraak_id INT PRIMARY KEY,
+    Gebruiker_id INT,
+    Patient_id INT,
+    Locatie_id INT,
+    status VARCHAR(255),
+    Datum DATE,
+    Tijd TIME,
+    Factuur_id INT,
+    FOREIGN KEY (Gebruiker_id) REFERENCES Gebruiker(gebruiker_id),
+    FOREIGN KEY (Patient_id) REFERENCES Patient(patient_id),
+    FOREIGN KEY (Locatie_id) REFERENCES Locatie(locatie_id),
+    FOREIGN KEY (Factuur_id) REFERENCES Factuur(factuur_nr)
+);
+
+CREATE TABLE Afspraak_Behandeling (
+    afspraak_id INT,
+    behandeling_id INT,
+    FOREIGN KEY (afspraak_id) REFERENCES Afspraak(afspraak_id),
+    FOREIGN KEY (behandeling_id) REFERENCES Behandeling(behandeling_id),
+    PRIMARY KEY (afspraak_id, behandeling_id)
 );
