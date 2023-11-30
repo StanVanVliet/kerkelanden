@@ -20,7 +20,7 @@ CREATE TABLE Patient (
 );
 
 CREATE TABLE User (
-    User_id INT PRIMARY KEY,
+    User_id INT AUTO_INCREMENT PRIMARY KEY,
     Adres VARCHAR(255),
     Password VARCHAR(255),
     Naam VARCHAR(255),

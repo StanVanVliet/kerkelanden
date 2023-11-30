@@ -1,7 +1,7 @@
 <?php
 $melding = "";
 if (isset($_POST['submit'])) {
-    require_once "classes/user.php";
+    require_once "./classes/user.php";
 
     $user = new User();
     
@@ -32,17 +32,18 @@ if (isset($_POST['submit'])) {
     
 <div class="container">     
     <form class="form" action="" method="POST">
+        <h1 class="title">login</h1>
         <span class="input">
-            <label for="username">Username: </label>
+            <label for="username">username: </label>
             <input type="text" name="username">
         </span>
         <span class="input">
-            <label for="password">Password: </label>
+            <label for="password">password: </label>
             <input type="password" name="password">
         </span>
         <div class="buttons">
-            <input type="submit" name="submit" value="Log In">
-            <a href="/">register</a>
+            <input type="submit" name="submit" value="login">
+            <a href="./register.php">register</a>
         </div>
     </form>
     <?php echo $melding; ?>

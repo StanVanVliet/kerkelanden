@@ -6,12 +6,48 @@
   justify-content: center;
 }
 
+.title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
 .input {
   display: flex;
   flex-direction: column;
 }
 
+input[type="text"],
+input[type="password"],
+input[type="date"] {
+  border-radius: none;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  width: 300px;
+  border: 1px solid black !important;
+  background-color: #e8f0fe;
+}
+
+input[type="submit"] {
+  padding: none;
+  background: none;
+  border: none;
+  background-color: none;
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.buttons > * {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  background-color: #e8f0fe !important;
+  padding: 10px;
+  margin: 10px 0px;
+  border: 1px solid black !important;
 }
