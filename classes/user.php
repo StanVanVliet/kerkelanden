@@ -11,10 +11,6 @@ class User extends DBconfig {
     public $tel_nr;
     public $rol;
 
-    public function voegAfspraakToe($id) {
-
-    }
-
     public function login($data) {
         try {
             $this->username = $data['username'];
