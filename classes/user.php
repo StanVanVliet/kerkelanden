@@ -30,18 +30,18 @@ class User extends DBconfig {
                 throw new Exception("Er ging iets mis met inloggen");
             }
     
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($user && password_verify($this->password, $user['password'])) {
-                return $user;
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($data && password_verify($this->password, $data['Password'])) {
+                return $data;
             } else {
                 return false;
             }
-
         } catch (Exception $e) {
             return $e->getMessage();
         }
     }
+    
 
     public function register($data) {
         try {

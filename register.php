@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 <body>
     
 <div class="container">     
-    <form class="form" action="" method="POST">
+    <form class="form" method="POST">
         <h1 class="title">Register</h1>
         <span class="input">
             <label for="username">username: </label>
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
         </span>
         <span class="input">
             <label for="tel_nr">telefoonnummer: </label>
-            <input type="text" name="tel_nr">
+            <input type="number" name="tel_nr">
         </span>
         <span class="input">
             <label for="rol">rol: </label>

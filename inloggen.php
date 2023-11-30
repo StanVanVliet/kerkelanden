@@ -45,8 +45,9 @@ if (isset($_POST['submit'])) {
             <input type="submit" name="submit" value="login">
             <a href="./register.php">register</a>
         </div>
+        <?php echo $melding; ?>
     </form>
-    <?php echo $melding; ?>
+    
 </div>
 
 </body>
