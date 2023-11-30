@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
         </span>
         <div class="buttons">
             <input type="submit" name="submit" value="login">
-            <a href="./register.php">register</a>
+            <a href="./register.php">Registreer</a>
         </div>
         <?php echo $melding; ?>
     </form>

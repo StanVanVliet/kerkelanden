@@ -22,13 +22,13 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/inloggen.css">
-    <title>Register</title>
+    <title>Registreer</title>
 </head>
 <body>
     
 <div class="container">     
     <form class="form" method="POST">
-        <h1 class="title">Register</h1>
+        <h1 class="title">Registreer</h1>
         <span class="input">
             <label for="username">username: </label>
             <input type="text" name="username">
@@ -36,6 +36,10 @@ if (isset($_POST['submit'])) {
         <span class="input">
             <label for="password">password: </label>
             <input type="password" name="password">
+        </span>
+        <span class="input">
+            <label for="naam">naam: </label>
+            <input type="text" name="naam">
         </span>
         <span class="input">
             <label for="adres">adres: </label>
@@ -54,7 +58,7 @@ if (isset($_POST['submit'])) {
             <input type="text" name="rol">
         </span>
         <div class="buttons">
-            <input type="submit" name="submit" value="Registreren">
+            <input type="submit" name="submit" value="Registreer">
             <a href="inloggen.php">Login</a>
         </div>
     </form>

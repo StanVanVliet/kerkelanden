@@ -47,17 +47,19 @@ class User extends DBconfig {
         try {
             $this->username = $data['username'];
             $this->password = password_hash($data['password'], PASSWORD_BCRYPT, ['cost' => 12]);
+            $this->naam = $data['naam'];
             $this->adres = $data['adres'];
             $this->geboortedatum = $data['geboortedatum'];
             $this->tel_nr = $data['tel_nr'];
             $this->rol = $data['rol'];
 
-            $sql = "INSERT INTO user (username, password, adres, geboortedatum, tel_nr, rol) VALUES (:username, :password, :adres, :geboortedatum, :tel_nr, :rol)";
+            $sql = "INSERT INTO user (username, password, naam, adres, geboortedatum, tel_nr, rol) VALUES (:username, :password, :naam, :adres, :geboortedatum, :tel_nr, :rol)";
 
             $this->connect();
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(':username', $this->username);
             $stmt->bindValue(':password', $this->password);
+            $stmt->bindValue(':naam', $this->naam);
             $stmt->bindValue(':adres', $this->adres);
             $stmt->bindValue(':geboortedatum', $this->geboortedatum);
             $stmt->bindValue(':tel_nr', $this->tel_nr);
