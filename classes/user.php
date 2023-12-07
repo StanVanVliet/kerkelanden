@@ -41,13 +41,13 @@ class User extends DBconfig {
 
     public function register($data) {
         try {
-            $this->username = $data['username'];
-            $this->password = password_hash($data['password'], PASSWORD_BCRYPT, ['cost' => 12]);
-            $this->naam = $data['naam'];
-            $this->adres = $data['adres'];
-            $this->geboortedatum = $data['geboortedatum'];
-            $this->tel_nr = $data['tel_nr'];
-            $this->rol = $data['rol'];
+            $this->username = $this->safe($data['username']);
+            $this->password = $this->safe(password_hash($data['password'], PASSWORD_BCRYPT, ['cost' => 12]));
+            $this->naam = $this->safe($data['naam']);
+            $this->adres = $this->safe($data['adres']);
+            $this->geboortedatum = $this->safe($data['geboortedatum']);
+            $this->tel_nr = $this->safe($data['tel_nr']);
+            $this->rol = $this->safe($data['rol']);
 
             $sql = "INSERT INTO user (username, password, naam, adres, geboortedatum, tel_nr, rol) VALUES (:username, :password, :naam, :adres, :geboortedatum, :tel_nr, :rol)";
 
