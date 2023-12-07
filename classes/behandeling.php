@@ -1,5 +1,5 @@
 <?php
-require_once "classes/config.php";
+require_once "DBconfig.php";
 
 class Behandeling extends DBconfig {
 

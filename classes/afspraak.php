@@ -1,5 +1,5 @@
 <?php
-require_once "classes/config.php";
+require_once "DBconfig.php";
 
 class Afspraak extends DBconfig {
 
@@ -12,7 +12,7 @@ class Afspraak extends DBconfig {
 
     // Afspraak
     public function afspraakMaken() {
-
+        
     }
 
     public function afspraakWijzigen() {
