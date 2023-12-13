@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
 
     if($result = $user->register($_POST)){
         $melding = $result;
-        header("Location: register.php");
+        header("Location: inloggen.php");
     } else {
         $melding = "Er is iets misgegaan tijdens de registratie!";
     }
